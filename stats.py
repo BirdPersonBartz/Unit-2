@@ -1,7 +1,7 @@
 import pandas as pd
-import scipy 
 import scipy.stats as stats
 #stats has to imported by itself from scipy
+
 data = '''Region,Alcohol,Tobacco
 			North,6.47,4.03
 			Yorkshire,6.13,3.76
@@ -33,9 +33,27 @@ df = pd.DataFrame(data_rows, columns=column_names)
 df['Alcohol'] = df['Alcohol'].astype(float)
 df['Tobacco'] = df['Tobacco'].astype(float)
 
-print("The mean for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (round(df['Alcohol'].mean(),3), round(df['Tobacco'].mean(),3)))
-print("The median for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (df['Alcohol'].median(), df['Tobacco'].median()))
-print("The mode for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (stats.mode(df['Alcohol']), stats.mode(df['Tobacco']))
-print("The range for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (max(df['Alcohol'])-min(df['Alcohol']), max(df['Tobacco'])-min(df['Tobacco']))
-print("The variance for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (round(df['Alcohol'].var(),3), round(df['Tobacco'].var(),3)))
-print("The standard deviation for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco" % (round(df['Alcohol'].std(),3), round(df['Tobacco'].std(),3)))
+
+
+#get the mode in the numpy array
+modeT = stats.mode(df['Tobacco'])
+modeA = stats.mode(df['Alcohol'])
+#convert to string for portion I need
+modeA = str(modeA[0:15])
+modeT = str(modeT[0:15])
+
+#Get the mean, roud to 3 deicmals
+means = "The mean for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco. " % (round(df['Alcohol'].mean(),3), round(df['Tobacco'].mean(),3))
+#get median
+medians = "The median for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco. " % (df['Alcohol'].median(), df['Tobacco'].median())
+#pick out the digits here. Bad code but what syntax could I use to make this better??
+modes = "The mode for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco. " % (modeA[9:13], modeT[9:13])
+#get var and round
+var = "The variance for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco. " % (round(df['Alcohol'].var(),3), round(df['Tobacco'].var(),3))
+#get stan d and round
+stanD = ("The standard deviation for the Alcohol and Tobacco dataset is %s for Alcohol and %s for Tobacco." % (round(df['Alcohol'].std(),3), round(df['Tobacco'].std(),3)))
+
+
+#print everything
+print(means, medians, modes, var, stanD)
+
