@@ -33,6 +33,7 @@ coeff = result.params
 
 
 #pluggin user values into expression to get p
+def logistic_regression(FICO, Amount)
 	p = 1/(1 + 2.71828182846**(coeff[2]+ coeff[1]*Amount + coeff[0]*FICO))
 	pred(p)
 
